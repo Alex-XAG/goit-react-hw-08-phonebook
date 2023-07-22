@@ -1,14 +1,15 @@
 import React from 'react';
 import { List, ItemLi, TextItem, BtnDelete } from './ContactList.styled';
-import { useSelector } from 'react-redux';
-import {
-  useGetContactsQuery,
-  useRemoveContactMutation,
-} from 'redux/contactSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAllContacts } from 'redux/contacts/selectors';
+import { deleteContact } from 'redux/contacts/operations';
 
 export const ContactList = () => {
-  const [removeContact, { isLoading }] = useRemoveContactMutation();
-  const { data: contacts } = useGetContactsQuery();
+  // const [removeContact, { isLoading }] = useRemoveContactMutation();
+  // const { data: contacts } = useGetContactsQuery();
+  const dispatch = useDispatch();
+
+  const contacts = useSelector(selectAllContacts);
 
   const filter = useSelector(state => state.filter);
 
@@ -23,8 +24,9 @@ export const ContactList = () => {
           <TextItem>
             {name}: {number}
           </TextItem>
-          <BtnDelete type="button" onClick={() => removeContact(id)}>
-            {isLoading ? 'Removing...' : 'Remove'}
+          <BtnDelete type="button" onClick={() => dispatch(deleteContact(id))}>
+            {/* {isLoading ? 'Removing...' : 'Remove'} */}
+            Remove
           </BtnDelete>
         </ItemLi>
       ))}

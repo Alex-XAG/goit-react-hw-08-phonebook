@@ -2,17 +2,20 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Form, Label, Input, BtnForm } from './ContactForm.styled';
-import { useAddContactMutation, useGetContactsQuery } from 'redux/contactSlice';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contacts/operations';
+import { selectAllContacts } from 'redux/contacts/selectors';
 
 export const ContactForm = () => {
-  const { data: contacts } = useGetContactsQuery();
-  const [addContact, { isLoading }] = useAddContactMutation();
+  // const { data: contacts } = useGetContactsQuery();
+  // const [addContact, { isLoading }] = useAddContactMutation();
+  const dispatch = useDispatch();
 
   const [inputName, setInputName] = useState('');
   const [inputNumber, setInputNumber] = useState('');
 
-  // const { contacts } = useSelector(state => state.contacts);
-  // const dispatch = useDispatch();
+  const contacts = useSelector(selectAllContacts);
 
   const handleInputChange = ({ target }) => {
     switch (target.name) {
@@ -40,13 +43,10 @@ export const ContactForm = () => {
   const onSubmit = (inputName, inputNumber) => {
     if (contacts.find(contact => contact.name === inputName)) {
       alert(`${inputName} is already in your phonebook`);
-    } else if (contacts.find(contact => contact.phone === inputNumber)) {
+    } else if (contacts.find(contact => contact.number === inputNumber)) {
       alert('This number exist in your phonebook');
     } else {
-      addContact({
-        name: inputName,
-        phone: inputNumber,
-      });
+      dispatch(addContact({ name: inputName, number: inputNumber }));
     }
   };
 
@@ -70,8 +70,9 @@ export const ContactForm = () => {
         required
         onChange={handleInputChange}
       />
-      <BtnForm type="submit" disabled={isLoading}>
-        {isLoading ? 'Adding contact' : 'Add contact'}
+      <BtnForm type="submit">
+        {/* {isLoading ? 'Adding contact' : 'Add contact'} */}
+        Add contact
       </BtnForm>
     </Form>
   );
