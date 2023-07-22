@@ -1,9 +1,9 @@
 import { useGetContactsQuery } from 'redux/contactSlice';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
+import { ContactForm } from 'components/ContactForm/ContactForm';
+import { ContactList } from 'components/ContactList/ContactList';
+import { Filter } from 'components/Filter/Filter';
 
-export const App = () => {
+const Contacts = () => {
   const { data: contacts, isFetching, error = null } = useGetContactsQuery();
 
   return (
@@ -29,3 +29,5 @@ export const App = () => {
     </div>
   );
 };
+
+export default Contacts;
