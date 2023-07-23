@@ -2,7 +2,7 @@ import React from 'react';
 import { List, ItemLi, TextItem, BtnDelete } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllContacts } from 'redux/contacts/selectors';
-import { deleteContact } from 'redux/contacts/operations';
+import { deleteContact } from 'redux/contacts/operationsContact';
 
 export const ContactList = () => {
   // const [removeContact, { isLoading }] = useRemoveContactMutation();

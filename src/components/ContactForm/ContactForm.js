@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Form, Label, Input, BtnForm } from './ContactForm.styled';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/operations';
+import { addContact } from 'redux/contacts/operationsContact';
 import { selectAllContacts } from 'redux/contacts/selectors';
 
 export const ContactForm = () => {

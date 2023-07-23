@@ -8,8 +8,6 @@ import { useAuth } from 'hooks/useAuth';
 import { RestrictedRoute } from './RestrictedRoute';
 import Home from 'pages/Home';
 import Register from 'pages/Register';
-import Register from 'pages/Register';
-import Home from 'pages/Home';
 import Login from 'pages/Login';
 import Contacts from 'pages/Contacts';
 
