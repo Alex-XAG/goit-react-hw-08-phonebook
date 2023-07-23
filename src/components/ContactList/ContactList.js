@@ -19,7 +19,7 @@ export const ContactList = () => {
 
   return (
     <List>
-      {filteredContacts.map(({ id, name, phone: number }) => (
+      {filteredContacts.map(({ id, name, number }) => (
         <ItemLi key={id}>
           <TextItem>
             {name}: {number}
