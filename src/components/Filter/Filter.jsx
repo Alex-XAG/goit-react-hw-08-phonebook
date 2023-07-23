@@ -1,9 +1,9 @@
 import React from 'react';
 import { FilterLabel, FilerInput } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from 'redux/contacts/filterSlice';
+import { setFilter } from 'redux/filterSlice';
 
-export const Filter = () => {
+export const Filter = ({ option }) => {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.filter);
 

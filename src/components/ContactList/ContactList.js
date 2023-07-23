@@ -2,16 +2,13 @@ import React from 'react';
 import { List, ItemLi, TextItem, BtnDelete } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllContacts } from 'redux/contacts/selectors';
-import { deleteContact } from 'redux/contacts/operationsContact';
-// import {
-//   useGetContactsQuery,
-//   useRemoveContactMutation,
-// } from 'redux/contacts/contactSlice';
+import { deleteContact } from 'redux/contacts/operations';
 
 export const ContactList = () => {
   // const [removeContact, { isLoading }] = useRemoveContactMutation();
   // const { data: contacts } = useGetContactsQuery();
   const dispatch = useDispatch();
+
   const contacts = useSelector(selectAllContacts);
 
   const filter = useSelector(state => state.filter);
@@ -22,12 +19,13 @@ export const ContactList = () => {
 
   return (
     <List>
-      {filteredContacts.map(({ id, name, number }) => (
+      {filteredContacts.map(({ id, name, phone: number }) => (
         <ItemLi key={id}>
           <TextItem>
             {name}: {number}
           </TextItem>
           <BtnDelete type="button" onClick={() => dispatch(deleteContact(id))}>
+            {/* {isLoading ? 'Removing...' : 'Remove'} */}
             Remove
           </BtnDelete>
         </ItemLi>
