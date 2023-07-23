@@ -2,20 +2,23 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Form, Label, Input, BtnForm } from './ContactForm.styled';
-
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/operations';
 import { selectAllContacts } from 'redux/contacts/selectors';
+import { addContact } from 'redux/contacts/operationsContact';
+// import {
+//   useAddContactMutation,
+//   useGetContactsQuery,
+// } from 'redux/contacts/contactSlice';
 
 export const ContactForm = () => {
-  // const { data: contacts } = useGetContactsQuery();
-  // const [addContact, { isLoading }] = useAddContactMutation();
   const dispatch = useDispatch();
+  const contacts = useSelector(selectAllContacts);
 
   const [inputName, setInputName] = useState('');
   const [inputNumber, setInputNumber] = useState('');
 
-  const contacts = useSelector(selectAllContacts);
+  // const { contacts } = useSelector(state => state.contacts);
+  // const dispatch = useDispatch();
 
   const handleInputChange = ({ target }) => {
     switch (target.name) {
@@ -46,7 +49,12 @@ export const ContactForm = () => {
     } else if (contacts.find(contact => contact.number === inputNumber)) {
       alert('This number exist in your phonebook');
     } else {
-      dispatch(addContact({ name: inputName, number: inputNumber }));
+      dispatch(
+        addContact({
+          name: inputName,
+          number: inputNumber,
+        })
+      );
     }
   };
 
@@ -71,8 +79,7 @@ export const ContactForm = () => {
         onChange={handleInputChange}
       />
       <BtnForm type="submit">
-        {/* {isLoading ? 'Adding contact' : 'Add contact'} */}
-        Add contact
+        <h3>Add contact</h3>
       </BtnForm>
     </Form>
   );

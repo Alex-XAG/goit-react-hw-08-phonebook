@@ -1,23 +1,17 @@
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectLoading } from 'redux/contacts/selectors';
-import { useEffect } from 'react';
-import { fetchContacts } from 'redux/contacts/operations';
+import { useSelector } from 'react-redux';
+// import { useGetContactsQuery } from 'redux/contacts/contactSlice';
+import { selectAllContacts } from 'redux/contacts/selectors';
 
 const Contacts = () => {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
+  // const { data: contacts, isFetching, error = null } = useGetContactsQuery();
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
+  const contacts = useSelector(selectAllContacts);
   return (
     <div
       style={{
-        height: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -31,9 +25,8 @@ const Contacts = () => {
 
       <h2>Contacts</h2>
       <Filter />
-      <div>{isLoading && 'Request in progress...'}</div>
-      <ContactList />
-      {/* {error && <h3>Something wrong my friend(((</h3>} */}
+
+      {contacts && <ContactList />}
     </div>
   );
 };
