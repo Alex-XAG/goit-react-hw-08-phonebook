@@ -10,6 +10,8 @@ import Home from 'pages/Home';
 import Register from 'pages/Register';
 import Login from 'pages/Login';
 import Contacts from 'pages/Contacts';
+import { Profile } from 'pages/Profile';
+import { UpdateAvatar } from 'pages/UpdateAvatar';
 
 // const HomePage = lazy(() => import('../pages/Home'));
 // const RegisterPage = lazy(() => import('../pages/Register'));
@@ -46,6 +48,16 @@ export const App = () => {
           element={<PrivateRoute component={Contacts} redirectTo="/login" />}
         />
         <Route path="*" element={<h2>Not found</h2>} />
+        <Route
+          path="/profile"
+          element={<PrivateRoute component={Profile} redirectTo="/login" />}
+        />
+        <Route
+          path="/profile/update"
+          element={
+            <PrivateRoute component={UpdateAvatar} redirectTo="/login" />
+          }
+        />
       </Route>
     </Routes>
   );
