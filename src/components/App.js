@@ -10,8 +10,8 @@ import Home from 'pages/Home';
 import Register from 'pages/Register';
 import Login from 'pages/Login';
 import Contacts from 'pages/Contacts';
-import { Profile } from 'pages/Profile';
-import { UpdateAvatar } from 'pages/UpdateAvatar';
+// import { Profile } from 'pages/Profile';
+// import { UpdateAvatar } from 'pages/UpdateAvatar';
 
 // const HomePage = lazy(() => import('../pages/Home'));
 // const RegisterPage = lazy(() => import('../pages/Register'));

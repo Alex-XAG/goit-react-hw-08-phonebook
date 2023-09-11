@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import hardSet from 'redux-persist/es/stateReconciler/hardSet';
+// import hardSet from 'redux-persist/es/stateReconciler/hardSet';
 import { updateAvatar } from '../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 
